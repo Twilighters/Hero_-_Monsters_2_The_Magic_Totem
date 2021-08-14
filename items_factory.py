@@ -47,7 +47,7 @@ class BookOfSpells(Item):
         return 'Найдена книга магии'
 
     def use(self):
-        return 'Кастует спелл во врага'
+        return 'Наносит урон светлой магией'
 
 class Apple(Item):
 

@@ -18,7 +18,7 @@ class Ogre(Enemy):
 class Skeleton(Enemy):
 
     def attack(self):
-        return 'Скелет стреляет стрелой из лука'
+        return 'Скелет стреляет выстрел из лука'
 
 
 class Goblin(Enemy):
