@@ -1,4 +1,5 @@
 from abc import ABC, abstractmethod
+import random
 
 
 class Item(ABC):
@@ -14,7 +15,9 @@ class Item(ABC):
         """Метод, наличие которого обязательно у всех."""
         pass
 
+
 class Sword(Item):
+    attack = 10
 
     def pick_up(self):
         return 'Найденный меч помещен в рюкзак'
@@ -23,14 +26,15 @@ class Sword(Item):
         return 'Нанесен удар мечом'
 
 
-
 class Bow(Item):
+    attack = 10
 
     def pick_up(self):
         return 'Найденный лук помещен в рюкзак'
 
     def use(self):
         return 'Сделан выстрел из лука'
+
 
 class Quiver(Item):
 
@@ -42,6 +46,7 @@ class Quiver(Item):
 
 
 class BookOfSpells(Item):
+    attack = 10
 
     def pick_up(self):
         return 'Найдена книга магии'
@@ -49,13 +54,19 @@ class BookOfSpells(Item):
     def use(self):
         return 'Наносит урон светлой магией'
 
+
 class Apple(Item):
+    healing = 20
 
     def pick_up(self):
         return 'Найдено яблоко'
 
     def use(self):
-        return 'Очки здоровья восстановлены'
+        from main import hero
+        hero.heal(self.healing)
+        hero.food.pop()
+        return print("Текущее показатели здоровья равны", hero.hp)
+
 
 class MagicTotem(Item):
 
@@ -79,14 +90,18 @@ class SwordFactory(ItemFactory):
     """Конкретная фабрика меча."""
 
     def create_item(self):
-        return Sword()
+        new_sword = Sword()
+        new_sword.attack = random.randint(10, 30)
+        return new_sword
 
 
 class BowFactory(ItemFactory):
     """Конкретная фабрика лука."""
 
     def create_item(self):
-        return Bow()
+        new_bow = Bow()
+        new_bow.attack = random.randint(10, 30)
+        return new_bow
 
 
 class QuiverFactory(ItemFactory):
@@ -95,17 +110,22 @@ class QuiverFactory(ItemFactory):
     def create_item(self):
         return Quiver()
 
+
 class BookOfSpellsFactory(ItemFactory):
     """Конкретная фабрика книги заклинаний."""
 
     def create_item(self):
-        return BookOfSpells()
+        new_book_of_spells = Sword()
+        new_book_of_spells.attack = random.randint(10, 30)
+        return new_book_of_spells
+
 
 class AppleFactory(ItemFactory):
     """Конкретная фабрика яблока."""
 
     def create_item(self):
         return Apple()
+
 
 class MagicTotemFactory(ItemFactory):
     """Конкретная фабрика магического тотема."""

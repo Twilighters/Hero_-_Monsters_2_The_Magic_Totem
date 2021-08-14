@@ -2,14 +2,15 @@ from enemy_factory import *
 from items_factory import *
 from player_classes import *
 
-players_current_class = ""
-players_current_weapon = "sword"
+hero = None
+equip = []
+# player_is_currently_equipped = "sword"
+# quiver_is_equipped = False
 monster_counter = 0
-hp = 10
-attack = 10
+# attack = 10
 
-monster_hp = 0
-monster_attack = 0
+# monster_hp = 150
+# monster_attack = 0
 
 spawner_to_factory_mapping = {
     "ogre": OgreFactory,
@@ -32,7 +33,7 @@ class_type_list = ["mage", "warrior", "archer"]
 
 def choice_player() -> str:
     """Выбор класса для игрока."""
-    print("Игра началась! \nДля начала необходимо выбрать класс, Выберите класс: \n1. Воин\n2. Маг\n3. Лучник")
+    print("Игра началась! \nДля начала необходимо выбрать класс\nВыберите класс: \n1. Воин\n2. Маг\n3. Лучник")
     pl_choice = input("1 или 2 или 3: ")
     while pl_choice != "1" and pl_choice != "2" and pl_choice != "3":
         if pl_choice != "1" and pl_choice != "2" and pl_choice != "3":
@@ -43,14 +44,14 @@ def choice_player() -> str:
 
 
 class_type = choice_player()
-if class_type == "1":
-    players_current_class = "warrior"
-elif class_type == "2":
-    players_current_class = "mage"
-elif class_type == "3":
-    players_current_class = "archer"
 
-print(players_current_class)
+if class_type == "1":
+    hero = Warrior()
+elif class_type == "2":
+    hero = Mage()
+elif class_type == "3":
+    hero = Archer()
+
 for i in range(10):
 
     rnd_event = random.randint(1, 2)
@@ -68,3 +69,24 @@ for i in range(10):
         item = spawner.create_item()
         action = item.use()
         print(action)
+
+
+hero = Warrior()
+sword_factory1 = SwordFactory()
+print(hero.weapons["sword"].attack)
+hero.weapons["sword"] = sword_factory1.create_item()
+print(hero.weapons["sword"].attack)
+
+
+apple_factory1 = AppleFactory()
+new_apple = apple_factory1.create_item()
+hero.food.append(new_apple)
+hero.food[0].use()
+
+
+
+
+if __name__ == '__main__':
+    print('Эта программа запущена сама по себе.')
+else:
+    print('Меня импортировали в другой модуль.')
