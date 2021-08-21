@@ -2,6 +2,7 @@ from abc import ABC, abstractmethod
 import random
 
 
+
 class Item(ABC):
     """Абстрактный класс игрового предмета."""
 
@@ -10,8 +11,10 @@ class Item(ABC):
         """Метод, наличие которого обязательно у всех."""
         pass
 
+
+
     @abstractmethod
-    def use(self):
+    def use(self, main_hero):
         """Метод, наличие которого обязательно у всех."""
         pass
 
@@ -22,7 +25,7 @@ class Sword(Item):
     def pick_up(self):
         return 'Найденный меч помещен в рюкзак'
 
-    def use(self):
+    def use(self, main_hero):
         return 'Нанесен удар мечом'
 
 
@@ -32,7 +35,7 @@ class Bow(Item):
     def pick_up(self):
         return 'Найденный лук помещен в рюкзак'
 
-    def use(self):
+    def use(self, main_hero):
         return 'Сделан выстрел из лука'
 
 
@@ -41,7 +44,7 @@ class Quiver(Item):
     def pick_up(self):
         return 'Найденный колчан помещен в рюкзак'
 
-    def use(self):
+    def use(self, main_hero):
         return 'Колчан задействовался'
 
 
@@ -51,7 +54,7 @@ class BookOfSpells(Item):
     def pick_up(self):
         return 'Найдена книга магии'
 
-    def use(self):
+    def use(self, main_hero):
         return 'Наносит урон светлой магией'
 
 
@@ -61,11 +64,12 @@ class Apple(Item):
     def pick_up(self):
         return 'Найдено яблоко'
 
-    def use(self):
-        from main import hero
-        hero.heal(self.healing)
-        hero.food.pop()
-        return print("Текущее показатели здоровья равны", hero.hp)
+
+    def use(self, main_hero):
+
+        main_hero.heal(self.healing)
+        main_hero.food.pop()
+        return print("Текущее показатели здоровья равны", main_hero.hp)
 
 
 class MagicTotem(Item):
@@ -73,7 +77,7 @@ class MagicTotem(Item):
     def pick_up(self):
         return 'Найден волшебный тотем'
 
-    def use(self):
+    def use(self, main_hero):
         return 'Игра сохранена'
 
 

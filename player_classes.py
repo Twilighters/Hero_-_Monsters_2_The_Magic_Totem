@@ -40,6 +40,25 @@ class Player(ABC):
         self.hp += 20
 
 
+
+class Hero(Player):
+
+    def __init__(self):
+        self.hp = 100
+        self.weapons["sword"] = Sword
+        self.sword_modifier = 1.2
+        self.melee_evade = 20
+    hero = None
+    def choice(self) -> None:
+
+        return None
+
+    def attack(self) -> None:
+        return None
+
+    def use(self) -> None:
+        return None
+
 class Warrior(Player):
 
     def __init__(self):
