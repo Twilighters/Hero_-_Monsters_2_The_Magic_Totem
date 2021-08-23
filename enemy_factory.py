@@ -1,17 +1,24 @@
 from abc import ABC, abstractmethod
-
+from player_classes import *
 
 class Enemy(ABC):
     """Абстрактный класс игрового противника."""
+    monster_hp = None
+    monster_attack = None
 
     @abstractmethod
     def attack(self):
         """Метод, наличие которого обязательно у всех."""
         pass
 
+
 class Ogre(Enemy):
+    def __init__(self):
+        self.monster_hp = 15
+        self.monster_attack = 4
 
     def attack(self):
+
         return 'Огр наносит удар дубиной'
 
 

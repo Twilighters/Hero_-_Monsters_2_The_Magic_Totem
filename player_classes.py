@@ -62,7 +62,7 @@ class Hero(Player):
 class Warrior(Player):
 
     def __init__(self):
-        self.hp = 100
+        self.hp = 15
         self.weapons["sword"] = Sword
         self.sword_modifier = 1.2
         self.melee_evade = 20

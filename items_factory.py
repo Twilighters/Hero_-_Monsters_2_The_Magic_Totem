@@ -20,7 +20,7 @@ class Item(ABC):
 
 
 class Sword(Item):
-    attack = 10
+    attack = 5
 
     def pick_up(self):
         return 'Найденный меч помещен в рюкзак'
